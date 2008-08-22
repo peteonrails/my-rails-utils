@@ -1,0 +1,68 @@
+#!/bin/bash
+
+echo "************************************************"
+echo "         Creating New Rails Project: $1         "
+echo "************************************************"
+rails $1
+
+echo "************************************************"
+echo "          Adding HAML"
+echo "************************************************"
+haml --rails $1
+cd $1
+
+echo "************************************************"
+echo "         Installing Plugins         "
+echo "************************************************"
+echo "****** RSpec        "
+script/plugin install git://github.com/dchelimsky/rspec.git -r 1.1.4
+echo "****** RSpec Rails       "
+script/plugin install git://github.com/dchelimsky/rspec-rails.git -r 1.1.4
+echo "****** Jrails        "
+script/plugin install http://ennerchi.googlecode.com/svn/trunk/plugins/jrails
+echo "****** Acts As State Machine        "
+script/plugin install http://elitists.textdriven.com/svn/plugins/acts_as_state_machine/trunk
+echo "****** RESTful Auth        "
+script/plugin install git://github.com/technoweenie/restful-authentication.git 
+echo "****** YAML Mail Config        "
+script/plugin install svn://rubyforge.org/var/svn/slantwise/yaml_mail_config/trunk yaml_mail_config
+cp vendor/plugins/yaml_mail_config/templates/email.example.yml config/email.yml
+
+
+echo "************************************************"
+echo "         Adding Gem dependencies         "
+echo "************************************************"
+sed -i.newrails.orig -e 's/^end//' config/environment.rb
+echo "config.gem 'will_paginate'" >> config/environment.rb
+echo "config.gem 'haml'" >> config/environment.rb
+echo 'config.gem "mbleigh-acts-as-taggable-on", :source => "http://gems.github.com", :lib => "acts-as-taggable-on"' >> config/environment.rb
+echo 'config.gem "peteonrails-vote_fu", :source => "http://gems.github.com", :lib => "vote_fu"' >> config/environment.rb
+echo "config.gem 'pager-exception_notification', :source => 'http://gems.github.com', :lib => 'exception_notification'" >> config/environment.rb
+echo "end" >> config/environment.rb 
+
+
+echo "************************************************"
+echo "         Setting up SASS        "
+echo "************************************************"
+mkdir -p "public/stylesheets/sass"
+echo "@import colors.sass" >> public/stylesheets/sass/application.sass
+echo "!white = #f1f1f1" >> public/stylesheets/sass/colors.sass
+echo "!black = #000" >> public/stylesheets/sass/colors.sass
+echo "!blue = #cfe0f0" >> public/stylesheets/sass/colors.sass
+
+echo "************************************************"
+echo "         Unpacking Gems         "
+echo "************************************************"
+rake gems:unpack
+
+echo "************************************************"
+echo "         Git         "
+echo "************************************************"
+echo "config/database.yml" >> .gitignore
+git init
+git add . 
+git commit . -m"Initial Revision"
+
+mate . 
+mate config/database.yml
+

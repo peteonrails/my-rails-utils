@@ -51,6 +51,12 @@ echo "!black = #000" >> public/stylesheets/sass/colors.sass
 echo "!blue = #cfe0f0" >> public/stylesheets/sass/colors.sass
 
 echo "************************************************"
+echo "         Setting up some files you'll want"
+echo "************************************************"
+touch "app/views/layouts/application.haml"
+rm public/index.html
+
+echo "************************************************"
 echo "         Unpacking Gems         "
 echo "************************************************"
 rake gems:unpack
@@ -64,5 +70,9 @@ git add .
 git commit . -m"Initial Revision"
 
 mate . 
+mate config/email.yml
+mate app/views/layouts/application.haml
+mate public/stylesheets/sass/colors.sass
+mate public/stylesheets/sass/application.sass
 mate config/database.yml
 

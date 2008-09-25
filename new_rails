@@ -18,6 +18,8 @@ echo "****** RSpec        "
 script/plugin install git://github.com/dchelimsky/rspec.git -r 1.1.4
 echo "****** RSpec Rails       "
 script/plugin install git://github.com/dchelimsky/rspec-rails.git -r 1.1.4
+echo "****** RSpec plugin generator"
+script/plugin install git://github.com/pat-maddox/rspec-plugin-generator.git
 echo "****** Jrails        "
 script/plugin install http://ennerchi.googlecode.com/svn/trunk/plugins/jrails
 echo "****** Acts As State Machine        "

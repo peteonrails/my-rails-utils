@@ -1,0 +1,16 @@
+If you were using "new_rails" before Rails 2.2 introduced the 
+project templating DSL, you we a pretty smart developer. If you're 
+STILL using new_rails, then you're missing out on a sweet project
+definition language. 
+
+Check out the fasteragile.rb template for details. 
+
+If you're doing this: 
+
+utils/new_rails myproject
+
+STOP! Do this instead: 
+
+rails myproject -m utils/fasteragile.rb
+
+Thanks!

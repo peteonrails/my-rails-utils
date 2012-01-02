@@ -1,4 +1,0 @@
-#!/bin/sh
-echo "new_rails is deprecated."
-echo "Try this instead:"
-echo "# rails $1 -m fasteragile.rb"

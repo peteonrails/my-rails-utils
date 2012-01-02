@@ -7,10 +7,14 @@ Check out the fasteragile.rb template for details.
 
 If you're doing this: 
 
-utils/new_rails myproject
+  utils/new_rails myproject
 
 STOP! Do this instead: 
 
-rails myproject -m utils/fasteragile.rb
+  rails myproject -m utils/fasteragile.rb
 
-Thanks!
+Or, even better: 
+
+ rails myproject -m intridea.rb
+
+
